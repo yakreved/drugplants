@@ -1,4 +1,5 @@
 Drugplants::Application.routes.draw do
+  devise_for :users
   resources :regions
 
   resources :countries
