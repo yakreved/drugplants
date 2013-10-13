@@ -1,8 +1,12 @@
 Drugplants::Application.routes.draw do
+  resources :families
+
   devise_for :users
   resources :regions
 
   resources :countries
+
+  root 'countries#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

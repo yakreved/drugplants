@@ -1,22 +1,26 @@
-<p id="notice"><%= notice %></p>
 
+<h2>Страна</h2>
+<p id="notice"><%= notice %></p>
 <p>
-  <strong>Name:</strong>
+  <strong>Название страны:</strong>
   <%= @country.name %>
 </p>
 
-<%= link_to 'Edit', edit_country_path(@country) %> |
-<%= link_to 'Back', countries_path %>
+<%= link_to 'Редактировать', edit_country_path(@country) %> |
+<%= link_to 'Назад', countries_path %>
+<br/><br/>
+<h3>Регионы</h3>
 
-<h2>Регионы</h2>
 <table>
   <tbody>
     <% @regions.each do |region| %>
       <tr>
-        <td><%= region.name %></td>
-        <td><%= link_to 'Show', region %></td>
-        <td><%= link_to 'Edit', edit_region_path(region) %></td>
-        <td><%= link_to 'Destroy', region, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td width="200px"><%= region.name %></td>
+        <td><%= link_to 'Подробнее', region %></td>
+        <% if user_signed_in? && current_user.type == "admin" %>
+	        <td><%= link_to 'Редактировать', edit_region_path(region) %></td>
+	        <td><%= link_to 'Уничтожить', region, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

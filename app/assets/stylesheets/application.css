@@ -12,7 +12,8 @@
  *= require_tree .
  */
 
-body { padding-top: 100px; }
+body { padding-top: 100px; z-index: 1; }
 footer { margin-top: 100px; }
-table, td, th { vertical-align: middle !important; border: none !important; }
+table { vertical-align: middle !important; border: none !important; width: 100%; }
 th { border-bottom: 1px solid #DDD !important; }
+td {padding-right: 15px}

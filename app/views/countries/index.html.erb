@@ -1,9 +1,9 @@
-<h1>Listing countries</h1>
+<h1>Страны</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><br/></th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,9 +14,11 @@
     <% @countries.each do |country| %>
       <tr>
         <td><%= country.name %></td>
-        <td><%= link_to 'Show', country %></td>
-        <td><%= link_to 'Edit', edit_country_path(country) %></td>
-        <td><%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Подробнее', country %></td>
+        <% if user_signed_in? && current_user.type == "admin" %>
+        <td><%= link_to 'Редактировать', edit_country_path(country) %></td>
+        <td><%= link_to 'Уничтожить', country, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Country', new_country_path %>
+<%= link_to 'Добавить страну', new_country_path %>

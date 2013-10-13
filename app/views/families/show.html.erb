@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название семейства:</strong>
+  <%= @family.name %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @family.description %>
+</p>
+
+<%= link_to 'Редактировать', edit_family_path(@family) %> |
+<%= link_to 'Назад', families_path %>
