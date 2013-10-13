@@ -1,4 +1,6 @@
 Drugplants::Application.routes.draw do
+  resources :plants
+
   resources :families
 
   devise_for :users
