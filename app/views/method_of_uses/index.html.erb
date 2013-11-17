@@ -1,0 +1,39 @@
+<h1>Способы применения лекарственных растений</h1>
+<br/>
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Используемое растение</th>
+      <th>Часть используемого растения</th>
+      <th></th>
+      <% if user_signed_in? && current_user.user_type == "admin" %>
+         <th></th>
+         <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @method_of_uses.each do |method_of_use| %>
+      <tr>
+        <td><%= method_of_use.name %></td>
+        <td><%= method_of_use.description %></td>
+        <td><%= link_to method_of_use.plant.name, method_of_use.plant %></td>
+        <td><%= method_of_use.path_of_plant.Name %></td>
+        <td align="right"><%= link_to 'Показать', method_of_use %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td align="right"><%= link_to 'Изменить', edit_method_of_use_path(method_of_use) %></td>
+          <td align="right"><%= link_to 'Удалить', method_of_use, method: :delete, data: { confirm: 'Вы Уверены?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Добавить новый способ применения', new_method_of_use_path %>
+<% end %>

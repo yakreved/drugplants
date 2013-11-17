@@ -1,15 +1,24 @@
 <h1>Список растений</h1>
-</td>
+
+<div class="container" align="right">
+  <%= form_tag(plants_path, :method => "get") do  %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Поиск", :name => nil %>
+  <% end %>
+</div>
+
+<div class="container">
 <table>
   <thead>
     <tr>
-      <th>Название</th>
-      <th>Описание</th>
-      <th>Семейство</th>
-      <th>Область произрастания</th>
+      <th><%= sortable "name","Название" %></th>
+      <th><%= sortable "description","Описание" %></th>
+      <th><%= sortable "families.name","Семейство" %></th>
+      <th><%= sortable "regions.name","Область произрастания"  %></th>
       <th></th>
-      <th></th>
-      <th></th>
+      <% if user_signed_in? && current_user.user_type == "admin" %>
+        <th></th><th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -21,8 +30,10 @@
         <td><%= plant.family.name %></td>
         <td><%= plant.region.name %></td>
         <td><%= link_to 'Подробно', plant %></td>
-        <td><%= link_to 'Редактировать', edit_plant_path(plant) %></td>
-        <td><%= link_to 'Удалить', plant, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td><%= link_to 'Редактировать', edit_plant_path(plant) %></td>
+          <td><%= link_to 'Удалить', plant, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +41,8 @@
 
 <br>
 
-<%= link_to 'Добавить растение', new_plant_path %>
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Добавить растение', new_plant_path %>
+<% end %>
+
+<div class="container">

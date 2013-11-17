@@ -6,8 +6,10 @@
       <th>Название</th>
       <th>Описание</th>
       <th></th>
-      <th></th>
-      <th></th>
+      <% if user_signed_in? && current_user.user_type == "admin" %>
+        <th></th>
+        <th></th>
+        <% end %>
     </tr>
   </thead>
 
@@ -17,8 +19,10 @@
         <td><%= family.name %></td>
         <td><%= family.description %></td>
         <td><%= link_to 'Подробно', family %></td>
-        <td><%= link_to 'Редактировать', edit_family_path(family) %></td>
-        <td><%= link_to 'Удалить', family, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td><%= link_to 'Редактировать', edit_family_path(family) %></td>
+          <td><%= link_to 'Удалить', family, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +30,6 @@
 
 <br>
 
-<%= link_to 'Добавить семейство растений', new_family_path %>
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Добавить семейство растений', new_family_path %>
+<% end %>

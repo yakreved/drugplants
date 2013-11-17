@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @method_of_use.name %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  	<textarea><%= @method_of_use.description %></textarea>
+</p>
+
+<p>
+  <strong>Используемое растение:</strong>
+  <%= @method_of_use.plant.name %>
+</p>
+
+<p>
+  <strong>Используемая часть:</strong>
+  <%= @method_of_use.path_of_plant.Name %>
+</p>
+
+<%= link_to 'Изменить', edit_method_of_use_path(@method_of_use) %> |
+<%= link_to 'Назад', method_of_uses_path %>

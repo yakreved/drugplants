@@ -6,9 +6,12 @@
   <%= @country.name %>
 </p>
 
-<%= link_to 'Редактировать', edit_country_path(@country) %> |
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Редактировать', edit_country_path(@country) %> |
+<% end %>
 <%= link_to 'Назад', countries_path %>
 <br/><br/>
+
 <h3>Регионы</h3>
 
 <table>
@@ -17,7 +20,7 @@
       <tr>
         <td width="200px"><%= region.name %></td>
         <td><%= link_to 'Подробнее', region %></td>
-        <% if user_signed_in? && current_user.type == "admin" %>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
 	        <td><%= link_to 'Редактировать', edit_region_path(region) %></td>
 	        <td><%= link_to 'Уничтожить', region, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

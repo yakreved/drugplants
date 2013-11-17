@@ -1,0 +1,9 @@
+<h1>Редактирование способа применения</h1>
+
+<%= render 'form' %>
+
+<% if user_signed_in? && current_user.user_type == "admin" %>
+	<%= link_to 'Показать', @method_of_use %> |
+<% end %>
+
+<%= link_to 'Назад', method_of_uses_path %>

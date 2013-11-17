@@ -1,0 +1,34 @@
+<h1>Части растения</h1>
+<img align="center" src="http://900igr.net/datai/okruzhajuschij-mir/CHasti-rastenija/0002-004-CHasti-rastenija-eto-koren-stebel-list-tsvetok-plod-s-semenami.jpg" alt="Path of plant" />
+<br/><br/>
+<table>
+  <thead>
+    <tr>
+      <th>Название </th>
+      <th>Опции</th>
+      <% if user_signed_in? && current_user.user_type == "admin" %>
+        <th></th>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @path_of_plants.each do |path_of_plant| %>
+      <tr>
+        <td><%= path_of_plant.Name %></td>
+        <td align="right"><%= link_to 'Показать', path_of_plant %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td align="right"><%= link_to 'Изменить', edit_path_of_plant_path(path_of_plant) %></td>
+          <td align="right"><%= link_to 'Удалить', path_of_plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Добавить часть растения', new_path_of_plant_path %>
+<% end %>

@@ -1,4 +1,15 @@
 Drugplants::Application.routes.draw do
+
+  resources :method_of_use_diseases
+
+  resources :diseases
+
+  resources :deases
+
+  resources :method_of_uses
+
+  resources :path_of_plants
+
   resources :plants
 
   resources :families

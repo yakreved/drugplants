@@ -5,8 +5,9 @@
     <tr>
       <th><br/></th>
       <th></th>
-      <th></th>
-      <th></th>
+      <% if user_signed_in? && current_user.user_type == "admin" %>
+         <th></th><th></th>
+      <%end%>
     </tr>
   </thead>
 
@@ -14,10 +15,10 @@
     <% @countries.each do |country| %>
       <tr>
         <td><%= country.name %></td>
-        <td><%= link_to 'Подробнее', country %></td>
-        <% if user_signed_in? && current_user.type == "admin" %>
-        <td><%= link_to 'Редактировать', edit_country_path(country) %></td>
-        <td><%= link_to 'Уничтожить', country, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <td align="right"><%= link_to 'Подробнее', country %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td  align="right"><%= link_to 'Редактировать', edit_country_path(country) %></td>
+          <td  align="right"><%= link_to 'Уничтожить', country, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
         <%end%>
       </tr>
     <% end %>
@@ -26,4 +27,6 @@
 
 <br>
 
-<%= link_to 'Добавить страну', new_country_path %>
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Добавить страну', new_country_path %>
+<%end%>

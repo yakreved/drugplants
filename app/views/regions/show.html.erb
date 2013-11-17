@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Название региона:</strong>
   <%= @region.name %>
 </p>
 
 <p>
-  <strong>Country:</strong>
-  <%= @region.country_id %>
+  <strong>Cтранa:</strong>
+  <%= @region.country.name%>
 </p>
 
-<%= link_to 'Edit', edit_region_path(@region) %> |
-<%= link_to 'Back', regions_path %>
+<% if user_signed_in? && current_user.user_type == "admin" %>
+<%= link_to 'Редактировать', edit_region_path(@region) %> |
+<% end %>
+<%= link_to 'Назад', regions_path %>

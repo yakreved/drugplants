@@ -10,5 +10,7 @@
   <%= @family.description %>
 </p>
 
-<%= link_to 'Редактировать', edit_family_path(@family) %> |
+<% if user_signed_in? && current_user.user_type == "admin" %>
+	<%= link_to 'Редактировать', edit_family_path(@family) %> |
+<% end -%>
 <%= link_to 'Назад', families_path %>

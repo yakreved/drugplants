@@ -1,0 +1,35 @@
+<h1>Список болезней</h1>
+<br/>
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Возможные рецепты</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diseases.each do |disease| %>
+      <tr>
+        <td><%= disease.name %></td>
+        <td><%= disease.discription %></td>
+        <td>
+            <% disease.method_of_use.each do |method| %>
+              <%= link_to method.name, method %>
+            <% end %>
+        </td>
+        <td><%= link_to 'Подробно', disease %></td>
+        <td><%= link_to 'Редактировать', edit_disease_path(disease) %></td>
+        <td><%= link_to 'Удалить', disease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить заболевание', new_disease_path %>

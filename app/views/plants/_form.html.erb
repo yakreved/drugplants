@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    Название<br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    Описание<br>
     <%= f.text_area :description %>
   </div>
   <div class="field">
@@ -30,6 +30,6 @@
                                                 selected_key = f.object.region_id)  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Применить" %>
   </div>
 <% end %>

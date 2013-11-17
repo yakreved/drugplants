@@ -1,0 +1,21 @@
+<%= form_for(@path_of_plant) do |f| %>
+  <% if @path_of_plant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@path_of_plant.errors.count, "error") %> prohibited this path_of_plant from being saved:</h2>
+
+      <ul>
+      <% @path_of_plant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    Название части растения<br>
+    <%= f.text_field :Name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

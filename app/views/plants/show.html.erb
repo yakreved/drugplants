@@ -1,24 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Название:</strong>
   <%= @plant.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Описание:</strong>
   <%= @plant.description %>
 </p>
 
 <p>
-  <strong>Family:</strong>
-  <%= @plant.family_id %>
+  <strong>Семейство/род:</strong>
+  <%= link_to @plant.family.name,@plant.family  %>
 </p>
 
 <p>
-  <strong>Region:</strong>
-  <%= @plant.region_id %>
+  <strong>Область произрастания:</strong>
+  <%= @plant.region.name %>
 </p>
 
-<%= link_to 'Edit', edit_plant_path(@plant) %> |
-<%= link_to 'Back', plants_path %>
+<% if user_signed_in? && current_user.user_type == "admin" %>
+	<%= link_to 'Изменить', edit_plant_path(@plant) %> |
+<% end -%>
+<%= link_to 'Назад', plants_path %>

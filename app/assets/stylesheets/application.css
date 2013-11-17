@@ -15,6 +15,23 @@
 body { padding-top: 100px; z-index: 1; }
 footer { margin-top: 100px; }
 table { vertical-align: middle !important; border: none !important; width: 100%; }
-th { border-bottom: 1px solid #DDD !important;  padding-right: 5px;}
+/*th { border-bottom: 1px solid #DDD !important;  padding-right: 5px;}*/
 td {padding-right: 15px}
 tr {  border-bottom:thin solid; border-color: #cccccc;}
+
+th .current {
+  padding-right: 12px;
+  padding-left: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url(/images/arrow_up.png);
+}
+
+th .desc {
+  background-image: url(/images/arrow_down.png);
+}
+
+textarea { width: 600px; height: 100px; text-align:}

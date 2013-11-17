@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Чатсть растения:</strong>
+  <%= @path_of_plant.Name %>
+</p>
+
+<% if user_signed_in? && current_user.user_type == "admin" %>
+	<%= link_to 'Изменить', edit_path_of_plant_path(@path_of_plant) %> |
+<% end %>
+<%= link_to 'Назад', path_of_plants_path %>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  method_of_use_id: 1
+  disease_id: MyString
+
+two:
+  method_of_use_id: 1
+  disease_id: MyString

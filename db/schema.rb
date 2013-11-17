@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013213347) do
+ActiveRecord::Schema.define(version: 20131117094657) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -19,9 +19,52 @@ ActiveRecord::Schema.define(version: 20131013213347) do
     t.datetime "updated_at"
   end
 
+  create_table "deases", force: true do |t|
+    t.string   "name"
+    t.text     "discription"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diseases", force: true do |t|
+    t.string   "name"
+    t.text     "discription"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diseases_method_of_uses", force: true do |t|
+    t.integer  "disease_id"
+    t.integer  "method_of_use_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "families", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "method_of_use_diseases", force: true do |t|
+    t.integer  "method_of_use_id"
+    t.string   "disease_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "method_of_uses", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "plant_id"
+    t.integer  "path_of_plant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "path_of_plants", force: true do |t|
+    t.string   "Name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,7 +99,7 @@ ActiveRecord::Schema.define(version: 20131013213347) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "type"
+    t.string   "user_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

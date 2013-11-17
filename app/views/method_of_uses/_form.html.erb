@@ -1,0 +1,35 @@
+<%= form_for(@method_of_use) do |f| %>
+  <% if @method_of_use.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@method_of_use.errors.count, "error") %> prohibited this method_of_use from being saved:</h2>
+
+      <ul>
+      <% @method_of_use.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    Название<br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    Описание<br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    Используемое растение<br>
+    <%= f.select  :plant_id, options_for_select(@plants.map{ |c| [c.name, "#{c.id}:#{c.name}"]} ,
+                                                selected_key = f.object.plant_id)  %>
+  </div>
+  <div class="field">
+    Часть растения<br>
+    <%= f.select :path_of_plant_id , options_for_select(@paths.map{ |c| [c.Name, "#{c.id}:#{c.Name}"]} ,
+                                                selected_key = @method_of_use.path_of_plant_id)  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

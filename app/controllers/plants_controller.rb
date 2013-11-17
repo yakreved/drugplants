@@ -1,10 +1,15 @@
 class PlantsController < ApplicationController
   before_action :set_plant, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /plants
   # GET /plants.json
   def index
-    @plants = Plant.all
+    if(params[:sort]!= nil)
+      @plants = Plant.joins(:family,:region).order(sort_column + " " + sort_direction).search(params[:search])
+    else
+      @plants = Plant.joins(:family,:region).search(params[:search])
+    end
   end
 
   # GET /plants/1
@@ -34,7 +39,7 @@ class PlantsController < ApplicationController
 
     respond_to do |format|
       if @plant.save
-        format.html { redirect_to @plant, notice: 'Plant was successfully created.' }
+        format.html { redirect_to @plant, notice: 'Растение было успешно добавлено.' }
         format.json { render action: 'show', status: :created, location: @plant }
       else
         format.html { render action: 'new' }
@@ -51,7 +56,7 @@ class PlantsController < ApplicationController
     
     respond_to do |format|
       if @plant.update(plant_params)
-        format.html { redirect_to @plant, notice: 'Plant was successfully updated.' }
+        format.html { redirect_to @plant, notice: 'Растение было успешно обновлено.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -79,5 +84,14 @@ class PlantsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def plant_params
       params.require(:plant).permit(:name, :description, :family_id, :region_id)
+    end
+    
+    def sort_column
+      #Plant.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      params[:sort]
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
