@@ -29,6 +29,7 @@ class MethodOfUsesController < ApplicationController
   # POST /method_of_uses.json
   def create
     @method_of_use = MethodOfUse.new(method_of_use_params)
+    @method_of_use.disease_ids = params[:method_of_use][:disease_ids]
 
     respond_to do |format|
       if @method_of_use.save
@@ -44,8 +45,12 @@ class MethodOfUsesController < ApplicationController
   # PATCH/PUT /method_of_uses/1
   # PATCH/PUT /method_of_uses/1.json
   def update
+
+    @method_of_use.disease_ids = params[:method_of_use][:disease_ids]
+
     respond_to do |format|
       if @method_of_use.update(method_of_use_params)
+
         format.html { redirect_to @method_of_use, notice: 'Метод использования успешно обновлён.' }
         format.json { head :no_content }
       else

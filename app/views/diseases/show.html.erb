@@ -1,13 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strongНазвание заболевания:</strong>
+  <strong>Название заболевания:</strong>
   <%= @disease.name %>
 </p>
 
 <p>
   <strong>Описание:</strong>
   <%= @disease.discription %>
+</p>
+
+<p>
+	<strong>Возможные лекарства:</strong>
+	<% @disease.method_of_use.each do |method| %>
+	  <%= link_to method.name, method %>
+	<% end %>
 </p>
 
 <%= link_to 'Редактировать', edit_disease_path(@disease) %> |

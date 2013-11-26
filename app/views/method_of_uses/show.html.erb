@@ -20,5 +20,12 @@
   <%= @method_of_use.path_of_plant.Name %>
 </p>
 
+<p>
+  <strong>Болезни, при которых может быть полезно данное средство</strong>
+  <% @method_of_use.disease.each do |disease| %>
+      <%= link_to disease.name,disease %>
+  <% end %>
+</p>
+
 <%= link_to 'Изменить', edit_method_of_use_path(@method_of_use) %> |
 <%= link_to 'Назад', method_of_uses_path %>

@@ -27,8 +27,9 @@ class DiseasesController < ApplicationController
     @disease = Disease.new(disease_params)
 
     respond_to do |format|
+      @disease.method_of_use_ids = params[:disease][:method_of_use_ids]
       if @disease.save
-        format.html { redirect_to @disease, notice: 'Disease was successfully created.' }
+        format.html { redirect_to @disease, notice: 'Заболевание было успешно добавлено.' }
         format.json { render action: 'show', status: :created, location: @disease }
       else
         format.html { render action: 'new' }
@@ -40,9 +41,11 @@ class DiseasesController < ApplicationController
   # PATCH/PUT /diseases/1
   # PATCH/PUT /diseases/1.json
   def update
+    #@disease.update_attributes(params[:disease].permit)
     respond_to do |format|
-      if @disease.update(disease_params)
-        format.html { redirect_to @disease, notice: 'Disease was successfully updated.' }
+      @disease.method_of_use_ids = params[:disease][:method_of_use_ids]
+      if @disease.save
+        format.html { redirect_to @disease, notice: 'Заболевание было успешно обновлено.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

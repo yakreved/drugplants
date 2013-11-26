@@ -23,8 +23,10 @@
             <% end %>
         </td>
         <td><%= link_to 'Подробно', disease %></td>
-        <td><%= link_to 'Редактировать', edit_disease_path(disease) %></td>
-        <td><%= link_to 'Удалить', disease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td><%= link_to 'Редактировать', edit_disease_path(disease) %></td>
+          <td><%= link_to 'Удалить', disease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,6 @@
 
 <br>
 
-<%= link_to 'Добавить заболевание', new_disease_path %>
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <%= link_to 'Добавить заболевание', new_disease_path %>
+<% end %>

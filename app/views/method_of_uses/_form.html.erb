@@ -29,7 +29,16 @@
     <%= f.select :path_of_plant_id , options_for_select(@paths.map{ |c| [c.Name, "#{c.id}:#{c.Name}"]} ,
                                                 selected_key = @method_of_use.path_of_plant_id)  %>
   </div>
+
+    <div class="field">
+      Болезни, при которых может помочь это средство:<br>
+      <% Disease.all.each do |disease|  %>
+          <%= check_box_tag 'method_of_use[disease_ids][]', disease.id,  @method_of_use.disease.include?(disease) %>
+          <%= disease.name %>
+      <% end %>
+      <%= hidden_field_tag 'method_of_use[disease_ids][]', '' %>
+    </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Сохранить" %>
   </div>
 <% end %>

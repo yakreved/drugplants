@@ -1,0 +1,27 @@
+<h1>Listing contraindications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contraindications.each do |contraindication| %>
+      <tr>
+        <td><%= contraindication.name %></td>
+        <td><%= link_to 'Show', contraindication %></td>
+        <td><%= link_to 'Edit', edit_contraindication_path(contraindication) %></td>
+        <td><%= link_to 'Destroy', contraindication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contraindication', new_contraindication_path %>

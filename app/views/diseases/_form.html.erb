@@ -12,14 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    Название заболевания<br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
-    <%= f.label :discription %><br>
+    Описание<br>
     <%= f.text_area :discription %>
   </div>
+
+  <div class="field">
+    Возможные лекарства:<br>
+    <% MethodOfUse.all.each do |method|  %>
+      <%= check_box_tag 'disease[method_of_use_ids][]', method.id,  @disease.method_of_use.include?(method) %>
+      <%= method.name %>
+    <% end %>
+    <%= hidden_field_tag 'disease[method_of_use_ids][]', '' %>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Сохранить" %>
   </div>
 <% end %>

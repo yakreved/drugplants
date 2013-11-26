@@ -1,5 +1,9 @@
 Drugplants::Application.routes.draw do
 
+  resources :contraindications
+
+  resources :indications
+
   resources :method_of_use_diseases
 
   resources :diseases
