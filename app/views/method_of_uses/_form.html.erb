@@ -33,11 +33,33 @@
     <div class="field">
       Болезни, при которых может помочь это средство:<br>
       <% Disease.all.each do |disease|  %>
-          <%= check_box_tag 'method_of_use[disease_ids][]', disease.id,  @method_of_use.disease.include?(disease) %>
+          <%= check_box_tag 'method_of_use[disease_ids][]', disease.id,  
+                            @method_of_use.disease.include?(disease) %>
           <%= disease.name %>
       <% end %>
       <%= hidden_field_tag 'method_of_use[disease_ids][]', '' %>
     </div>
+
+    <div class="field">
+      Показания к применению:<br>
+      <% Indication.all.each do |indication|  %>
+          <%= check_box_tag 'method_of_use[indication_ids][]', indication.id,
+                            @method_of_use.indication.include?(indication) %>
+          <%= indication.name %>
+      <% end %>
+      <%= hidden_field_tag 'method_of_use[indication_ids][]', '' %>
+    </div>
+
+    <div class="field">
+      Противопоказания к применению:<br>
+      <% Contraindication.all.each do |contraindication|  %>
+          <%= check_box_tag 'method_of_use[contraindication_ids][]', contraindication.id,
+                            @method_of_use.contraindication.include?(contraindication) %>
+          <%= contraindication.name %>
+      <% end %>
+      <%= hidden_field_tag 'method_of_use[contraindication_ids][]', '' %>
+    </div>
+
   <div class="actions">
     <%= f.submit "Сохранить" %>
   </div>

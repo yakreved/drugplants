@@ -1,9 +1,11 @@
-<h1>Listing contraindications</h1>
+<h1>Список противопоказаний</h1>
+
+<br />
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Название</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,9 +16,11 @@
     <% @contraindications.each do |contraindication| %>
       <tr>
         <td><%= contraindication.name %></td>
-        <td><%= link_to 'Show', contraindication %></td>
-        <td><%= link_to 'Edit', edit_contraindication_path(contraindication) %></td>
-        <td><%= link_to 'Destroy', contraindication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Подробнее', contraindication %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td><%= link_to 'Редактировать', edit_contraindication_path(contraindication) %></td>
+          <td><%= link_to 'Удалить', contraindication, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Contraindication', new_contraindication_path %>
+<%= link_to 'Добавить противопоказание', new_contraindication_path %>

@@ -12,14 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    Название региона<br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
-    <%= f.label :country_id %><br>
-    <%= f.text_field :country_id %>
+    Страна<br>
+    <%= f.select :country_id , options_for_select(@countries.map{ |c| [c.name, "#{c.id}:#{c.name}"]} ,
+                                                selected_key = f.object.country_id)  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Сохранить" %>
   </div>
 <% end %>

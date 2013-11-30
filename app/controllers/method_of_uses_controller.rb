@@ -30,6 +30,8 @@ class MethodOfUsesController < ApplicationController
   def create
     @method_of_use = MethodOfUse.new(method_of_use_params)
     @method_of_use.disease_ids = params[:method_of_use][:disease_ids]
+    @method_of_use.indication_ids = params[:method_of_use][:indication_ids]
+    @method_of_use.contraindication_ids = params[:method_of_use][:contraindication_ids]
 
     respond_to do |format|
       if @method_of_use.save
@@ -45,8 +47,10 @@ class MethodOfUsesController < ApplicationController
   # PATCH/PUT /method_of_uses/1
   # PATCH/PUT /method_of_uses/1.json
   def update
-
+    #indication
     @method_of_use.disease_ids = params[:method_of_use][:disease_ids]
+    @method_of_use.indication_ids = params[:method_of_use][:indication_ids]
+    @method_of_use.contraindication_ids = params[:method_of_use][:contraindication_ids]
 
     respond_to do |format|
       if @method_of_use.update(method_of_use_params)

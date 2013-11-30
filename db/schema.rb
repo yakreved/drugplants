@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131124114745) do
+ActiveRecord::Schema.define(version: 20131130083055) do
 
   create_table "contraindications", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contraindications_method_of_uses", force: true do |t|
+    t.integer  "method_of_use_id"
+    t.integer  "contraindication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,6 +62,13 @@ ActiveRecord::Schema.define(version: 20131124114745) do
 
   create_table "indications", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "indications_method_of_uses", force: true do |t|
+    t.integer  "method_of_use_id"
+    t.integer  "indication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,9 +1,9 @@
-<h1>Listing indications</h1>
+<h1>Список показаний</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Название</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,9 +14,11 @@
     <% @indications.each do |indication| %>
       <tr>
         <td><%= indication.name %></td>
-        <td><%= link_to 'Show', indication %></td>
-        <td><%= link_to 'Edit', edit_indication_path(indication) %></td>
-        <td><%= link_to 'Destroy', indication, method: :delete %></td>
+        <td><%= link_to 'Подробнее', indication %></td>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <td><%= link_to 'Редактировать', edit_indication_path(indication) %></td>
+          <td><%= link_to 'Удалить', indication, method: :delete %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Indication', new_indication_path %>
+<%= link_to 'Добавить показание', new_indication_path %>

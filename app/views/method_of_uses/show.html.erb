@@ -21,9 +21,23 @@
 </p>
 
 <p>
-  <strong>Болезни, при которых может быть полезно данное средство</strong>
+  <strong>Болезни, при которых может быть полезно данное средство: </strong>
   <% @method_of_use.disease.each do |disease| %>
       <%= link_to disease.name,disease %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Показания к применению: </strong>
+  <% @method_of_use.indication.each do |indication| %>
+      <%= link_to indication.name,indication %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Противопоказания к применению: </strong>
+  <% @method_of_use.contraindication.each do |contraindication| %>
+      <%= link_to contraindication.name,contraindication %>
   <% end %>
 </p>
 

@@ -46,7 +46,7 @@
 		<% end %>-->
 	  <%= yield %>
 	</div>
-	<% if Random.rand(11) > 9 %>		
+	<% if Random.rand(111) <  3 %>		
 	<img style="position:absolute; bottom:0; left:0" src="/house-dr.png" onclick="closeimage(this)" alt="House" />
 	<% end %>
 </body>

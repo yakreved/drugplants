@@ -15,20 +15,22 @@ class RegionsController < ApplicationController
   # GET /regions/new
   def new
     @region = Region.new
+    @countries = Country.all
   end
 
   # GET /regions/1/edit
   def edit
+    @countries = Country.all
   end
 
   # POST /regions
   # POST /regions.json
   def create
     @region = Region.new(region_params)
-
+    @countries = Country.all
     respond_to do |format|
       if @region.save
-        format.html { redirect_to @region, notice: 'Region was successfully created.' }
+        format.html { redirect_to @region, notice: 'Регион был успешно добавлен.' }
         format.json { render action: 'show', status: :created, location: @region }
       else
         format.html { render action: 'new' }
@@ -42,7 +44,7 @@ class RegionsController < ApplicationController
   def update
     respond_to do |format|
       if @region.update(region_params)
-        format.html { redirect_to @region, notice: 'Region was successfully updated.' }
+        format.html { redirect_to @region, notice: 'Регион был успешно изменён.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
